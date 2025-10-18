@@ -1,4 +1,4 @@
-# Day 1 - Ngspice Sky130 Basics: NMOS Drain Current (ID) vs Drain-to-Source Voltage (VDS)**
+# Day 1 - Ngspice Sky130 Basics: NMOS Drain Current (ID) vs Drain-to-Source Voltage (VDS)
 
 ---
 
@@ -66,52 +66,48 @@ Hence, **additional potential** is required to achieve strong inversion in the p
 
 ### Threshold Voltage Equation:
 
-\[
-V_T = V_{T0} + \gamma \left(\sqrt{|\phi_f + V_{SB}|} - \sqrt{|\phi_f|}\right)
-\]
+![Threshold voltage](Screenshots/Vth.png)
 
-Where:  
-- \( V_{T0} \): Zero-bias threshold voltage  
-- \( \gamma = \sqrt{\frac{2qN_A \varepsilon_{Si}}{C_{ox}}} \): Body effect coefficient  
-- \( \phi_f = -\phi_t \ln\left(\frac{N_A}{N_i}\right) \): Fermi potential  
-
+where,
+```bash 
+Vto - Zero Biased Threshold Voltage
+γ - Body-Bias Coefficient
+pi_f - Fermi potential
+```
 ---
 
 ## Modes of Operation
 
 ### **Cutoff Region**
-- \( V_{GS} < V_T \)  
+-  V_GS < V_T   
 - No inversion channel formed → transistor OFF  
-
+---
 ### **Resistive (Linear/Triode) Region**
-- \( V_{GS} > V_T \) and \( V_{DS} < (V_{GS} - V_T) \)  
+- V_GS > V_T and V_DS < (V_GS - V_T)  
 - Channel exists → behaves like a resistor  
-- Current is **linearly** proportional to \( V_{DS} \)
+- Current is **linearly** proportional to V_DS.
 
-Current Equation (First-order analysis):
-
-\[
-I_D = K' \frac{W}{L} \left[(V_{GS} - V_T)V_{DS} - \frac{V_{DS}^2}{2}\right]
-\]
-
+**Current Equation (First-order analysis):**
+```bash
+ID = Kn’(W/L)[(VGS − VT)VDS − VDS²/2]
+```
+---
 ###  **Saturation Region**
-- \( V_{DS} \ge (V_{GS} - V_T) \)  
+-  V_DS > (V_GS - V_T)  
 - Channel pinches off near the drain → current becomes constant  
 
-Saturation current:
-
-\[
-I_{D,sat} = \frac{1}{2} K' \frac{W}{L} (V_{GS} - V_T)^2 (1 + \lambda V_{DS})
-\]
-
+**Saturation current:**
+```bash
+ID = (1/2)K’(W/L)(VGS − VT)²(1 + λVDS)
+```
 Where:  
-- \( K' = \mu_n C_{ox} \) (process transconductance parameter)  
-- \( \lambda \): Channel-length modulation factor  
+- K' = mu_n C_ox (process transconductance parameter)  
+- lambda : Channel-length modulation factor  
 
  **Pinch-off Condition:** 
-\[
-V_{GS} - V_{DS} \le V_T
-\]
+```bash
+V_GS - V_DS < V_T
+```
 
 ![Pinch Off phenomenon](Screenshots/Pinch_off.png)
 
@@ -141,9 +137,9 @@ Total Drain Current \( I_D \) is derived from the product of **carrier velocity*
 
 We discussed how **SPICE simulations** are used to compute **ID vs VDS** characteristics by sweeping voltages for different **VGS** levels:
 
-- For each **VGS**, **VDS** is swept from 0 to \( V_{GS} - V_T \)
+- For each **VGS**, **VDS** is swept from 0 to (V_GS - V_T)
 - Simulation plots **ID vs VDS** curve  
-- As **VDS** exceeds \( V_{GS} - V_T \), the device enters saturation
+- As **VDS** exceeds (V_GS - V_T), the device enters saturation.
 
 👉 This analysis answers the earlier question:  
 **“How do we calculate ID for different VGS values?” → Using SPICE simulations.**
@@ -283,7 +279,7 @@ This clear separation is important for understanding where the MOSFET transition
 - Thus, every SPICE-level measurement here is a foundation for timing libraries used in synthesis, place & route, and sign-off.
 
 ---
-## Variation Effect Insight**
+## Variation Effect Insight
 
 - If **supply voltage (VDD)** decreases, the entire ID–VDS curve shifts downward, reducing drive current and increasing delay.
 - If **threshold voltage (VT)** varies due to process corners (e.g., FF, TT, SS), the saturation current changes, altering timing margins.

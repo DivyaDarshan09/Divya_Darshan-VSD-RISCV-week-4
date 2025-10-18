@@ -32,7 +32,7 @@ we can perform **high-level scripting operations** such as loops, sweeps, or eve
 ---
 ### 3. VTC Curve Analysis
 
-![VTC](Screenshots/VTC.jpg)
+![VTC](Screenshots/VTC.png)
 
 - From the above screenshot, it is clear that the cmos operating in `2.5v` has a configuration of `Strong pmos and weak nmos` and conversely the cmos in `0.5v` has a configuration of `weak pmos and strong nmos`.
 ---

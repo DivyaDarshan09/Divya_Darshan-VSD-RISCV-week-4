@@ -41,6 +41,8 @@ We studied the **drain current (ID) vs gate-to-source voltage (VGS)** for both *
 - **Velocity saturation:** A phenomenon where carrier velocity **saturates** at high electric fields. 
 ![Velocity Saturation](Screenshots/vsat.png)
 
+---
+
 ![Velocity Saturation](Screenshots/vsat_formula.png)
 
 
@@ -52,6 +54,8 @@ This effect is prominent in **short-channel devices** and affects the **ID–VGS
 **Operation Modes**
 
 ![Operation Modes](Screenshots/op_modes.png)
+
+---
 
 ![Velocity Saturates](Screenshots/vel_sat.png)
 
@@ -72,7 +76,10 @@ This effect is prominent in **short-channel devices** and affects the **ID–VGS
 ---
 
 **Structure of CMOS**
+
 ![MOS](Screenshots/cmos.png)
+
+---
 
 ![MOS](Screenshots/mos_switch.png)
 
@@ -91,16 +98,13 @@ This effect is prominent in **short-channel devices** and affects the **ID–VGS
 ### 2.1 Node and Device Voltages
 
 We defined node voltages for analysis:
-
-\[
-\begin{aligned}
-V_{GS,n} &= V_{in} - V_{SS} \\
-V_{DS,n} &= V_{out} \\
-V_{GS,p} &= V_{in} - V_{DD} \\
-V_{DS,p} &= V_{out} - V_{DD} \\
-I_{DS,p} &= - I_{DS,n}
-\end{aligned}
-\]
+```bash
+V_GSn = V_in - V_SS 
+V_DSn = V_out 
+V_GSp = V_in - V_DD 
+V_DSp = V_out - V_DD
+I_DSp = - I_DSn
+```
 
 ---
 
@@ -115,7 +119,7 @@ These curves help in understanding **pull-up and pull-down strengths** in a CMOS
 
 ---
 
-## 4. CMOS Inverter VTC Derivation
+## 4. CMOS Inverter VTC
 
 ### 4.1 Steps Followed:
 
