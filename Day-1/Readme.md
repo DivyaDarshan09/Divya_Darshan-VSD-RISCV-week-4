@@ -1,5 +1,4 @@
-# VST Week 4 – Day 1  
-### **Ngspice Sky130 Basics: NMOS Drain Current (ID) vs Drain-to-Source Voltage (VDS)**
+# Day 1 - Ngspice Sky130 Basics: NMOS Drain Current (ID) vs Drain-to-Source Voltage (VDS)**
 
 ---
 
@@ -260,4 +259,51 @@ ngspice day1_nfet_idvds_L2_W5.spice
 
 ![Dc graph](Screenshots/DC_Graph_op.jpg)
 
+**Region Annotation**
+The ID–VDS curve can be divided into three main operating regions:
+
+| Region | Condition | Behavior | Current Equation |
+|---------|------------|-----------|------------------|
+| **Cutoff** | VGS < VT | Transistor OFF | ID ≈ 0 |
+| **Linear (Ohmic)** | VGS > VT and VDS < (VGS − VT) | Acts as a voltage-controlled resistor | ID = K’(W/L)[(VGS − VT)VDS − VDS²/2] |
+| **Saturation** | VDS ≥ (VGS − VT) | ID becomes constant due to channel pinch-off | ID = (1/2)K’(W/L)(VGS − VT)²(1 + λVDS) |
+
+This clear separation is important for understanding where the MOSFET transitions from **resistive behavior to current saturation**, directly influencing inverter delay.
+
+---
+
+##  Device Physics Correlation
+
+- **Threshold voltage (VT)** determines the onset of conduction; any shift due to process or body effect directly changes the switching threshold in digital logic.
+- **Channel-length modulation (λ)** causes the small slope in the saturation region, introducing non-ideal current variation with VDS.
+- **Mobility degradation** at higher gate voltages slightly reduces the transconductance, affecting timing accuracy.
+---
+
+- In STA, the transistor’s nonlinear ID–VDS relationship translates into **nonlinear cell delay curves**, which are captured in the .lib characterization process.  
+- Thus, every SPICE-level measurement here is a foundation for timing libraries used in synthesis, place & route, and sign-off.
+
+---
+## Variation Effect Insight**
+
+- If **supply voltage (VDD)** decreases, the entire ID–VDS curve shifts downward, reducing drive current and increasing delay.
+- If **threshold voltage (VT)** varies due to process corners (e.g., FF, TT, SS), the saturation current changes, altering timing margins.
+- This shows why STA must analyze multiple corners to ensure reliable operation under real-world variations.
+---
+## Observation Summary
+
+| Parameter | Observed Behavior | Explanation |
+|------------|------------------|--------------|
+| **VGS Increase** | Higher ID for same VDS | Stronger inversion → more carriers |
+| **VDS Increase** | ID rises then saturates | Channel pinch-off beyond (VGS − VT) |
+| **λ (Channel-length Modulation)** | Slight slope in saturation region | Reflects real transistor non-ideality |
+| **Process Corner Change** | Curve shifts (ID variation) | Affects performance and delay tables |
+
+---
+
+## Key Takeaways
+
+- The **SPICE-simulated ID–VDS curves** confirm the theoretical NMOS equations.  
+- The **saturation region** defines the transistor’s **drive strength**, directly affecting CMOS switching speed.  
+- Parameters like **VTO**, **λ**, and **γ** obtained from this characterization are later used in **timing and power modeling** for STA.  
+- This experiment bridges **device physics → SPICE simulation → library characterization → STA timing analysis**.
 ---
