@@ -36,22 +36,22 @@ Summary of key learnings, simulation setups, and observations can be placed here
 ---
 
 ## Day 2: Velocity Saturation and Basics of CMOS Inverter VTC
-Summary of velocity saturation concept, short vs long channel comparison, and CMOS VTC derivation.)*
+Summary of velocity saturation concept, short vs long channel comparison, and CMOS VTC derivation.
 
 ---
 
 ## Day 3: CMOS Switching Threshold and Dynamic Simulation
-*(Details on switching threshold extraction, transient analysis, rise/fall delays, and SPICE results.)*
+Details on switching threshold extraction, transient analysis, rise/fall delays, and SPICE results.
 
 ---
 
 ## Day 4: CMOS Noise Margin and Robustness Evaluation
-*(Explanation of noise margin theory, NMH/NML calculations, and inverter robustness under noise.)*
+Explanation of noise margin theory, NMH/NML calculations, and inverter robustness under noise.
 
 ---
 
 ## Day 5: CMOS Power Supply and Device Variation Robustness Evaluation
-*(Description of power supply variation study, device parameter impact, and CMOS stability analysis.)*
+Description of power supply variation study, device parameter impact, and CMOS stability analysis.
 
 ---
 
